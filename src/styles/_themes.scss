@@ -1,0 +1,24 @@
+@import './variables';
+
+%light {
+  color: $lightColor;
+  background-color: $lightBackground;
+}
+
+%dark {
+  color: $darkColor;
+  background-color: $darkBackground;
+}
+
+%light__elem {
+  color: $lightColor;
+  background-color: $lightElementBackground;
+  border: 1px solid #c4c4c4;
+}
+
+%dark__elem {
+  color: $darkColor;
+  background-color: $darkElementBackground;
+  border: 1px solid #5f5f5f;
+}
+

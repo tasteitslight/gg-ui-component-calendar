@@ -1,0 +1,27 @@
+@import '../../styles/themes';
+
+.datepicker {
+  position: absolute;
+  top:60px;
+  z-index: 200;
+  width:300px;
+  transition: all 300ms ease-out;
+}
+
+.container--light {
+  @extend %light;
+}
+
+.container--dark {
+  @extend %dark;
+}
+
+.DatePickerOpen {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.DatePickerClosed {
+    opacity: 0;
+    transform: translateY(-5%);
+}

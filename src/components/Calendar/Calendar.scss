@@ -1,0 +1,331 @@
+@import '../../styles/themes';
+@import '../../styles/variables';
+
+// Variable Calendar Dimensions
+
+@function pix($var){
+  @return $var * 1px
+};
+
+// Edit only this value
+
+$width: 300;
+
+$height: $width / 12;
+$gridGap: $width / 30;
+$headHeight: $width / 20 * 3;
+$chevronPad: $width / 10;
+$calDate: $width / 15;
+
+$widthPx: pix($width);
+$heightPx: pix($height);
+$gridGapPx: pix($gridGap);
+$headHeightPx: pix($headHeight);  
+$chevronPadPx: pix($chevronPad);
+$calDatePx: pix($calDate);
+
+// Calendar General Styles
+
+.calendar {
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(#000, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  width: $widthPx;
+  margin: 20px 20px 20px 0px;
+
+    @media (max-width:500px) {
+      margin: 5px;
+    }
+}
+
+.calendar--light {
+  @extend %light__elem;
+}
+
+.calendar--dark {
+  @extend %dark__elem;
+}
+
+// Calendar Header Styles
+
+.calendar__header {
+  padding-top:3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $headHeightPx;
+}
+
+.calendar__header--light--border {
+  border-bottom: 2px solid;
+  border-color: #dbdbdb;
+}
+
+.calendar__header--light--primary--border {
+  border-bottom: 2px solid;
+  border-color: $primary;
+}
+
+.calendar__header--light--secondary--border {
+  border-bottom: 2px solid;
+  border-color: $secondary;
+}
+
+.calendar__header--light--primary--solid {
+  color: white;
+  background-color: $primary;
+  border-bottom: .125rem solid $primaryDark;
+
+  & .calendar__chevrons:hover,
+    .calendar__chevrons:active {
+      color: $secondary;
+  }
+}
+
+.calendar__header--light--secondary--solid {
+  color: white;
+  background-color: $secondary;
+  border-bottom: .125rem solid $secondaryDark;
+}
+
+.calendar__header--dark--primary--solid {
+  color:white;
+  background-color: $primaryDark;
+
+  & .calendar__chevrons:hover,
+    .calendar__chevrons:active {
+      color: $secondary;
+  } 
+}
+
+.calendar__header--dark--secondary--solid {
+  color:white;
+  background-color: $secondaryDark;
+}
+
+.calendar__chevrons {
+  border: none;
+  padding: 0px $chevronPadPx;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.calendar__chevrons:hover,
+.calendar__chevrons:active {
+  color: $primary;
+  cursor: pointer;
+}
+
+.calendar__month {
+  font-size: 1.2em;
+  font-weight:700;
+  padding: 0px 5px 0px 10px;
+  cursor: pointer;
+}
+
+.calendar__year {
+  font-size: 1.2em;
+  font-weight:700;
+  padding: 0px 10px 0px 5px;
+  cursor: pointer;
+}
+
+// Calendar Element Styles
+
+.calendar__date {
+  padding: 0px $calDatePx $calDatePx $calDatePx;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: $gridGapPx;
+  box-sizing: border-box;
+}
+
+.calendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: $gridGapPx;
+  height: $heightPx;
+  font-family: 'pnReg', sans-serif;
+}
+
+.calendar__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $heightPx;
+  
+  &--current,
+  &:hover {
+    background-color: $primary;
+    color: #fff !important;
+    font-weight: 700;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+}
+
+.calendar--large {
+  width: 600px;
+  & .calendar__header {
+    height: 50px;
+    padding-top:20px;
+  }
+  & .calendar__chevrons {
+    padding: 0px 60px;
+  }
+  & .calendar__date {
+    padding: 0px 40px 40px 40px;
+    grid-gap: 20px;
+  }
+  & .calendar__day {
+    padding-top: 20px;
+    height: 50px;
+  }
+  & .calendar__number {
+    height: 50px;
+  }
+  @media (max-width: 900px) {
+    width: 450px;
+    & .calendar__header {
+      height: 37.5px;
+      padding-top:15px;
+    }
+    & .calendar__chevrons {
+      padding: 0px 45px;
+    }
+    & .calendar__date {
+      padding: 0px 30px 30px 30px;
+      grid-gap: 15px;
+    }
+    & .calendar__day {
+      padding-top: 15px;
+      height: 37.5px;
+    }
+    & .calendar__number {
+      height: 37.5px;
+    }
+  }
+  @media (max-width: 600px) {
+    width: 300px;
+    & .calendar__header {
+      height: 25px;
+      padding-top:10px;
+    }
+    & .calendar__chevrons {
+      padding: 0px 30px;
+    }
+    & .calendar__date {
+      padding: 0px 20px 20px 20px;
+      grid-gap: 10px;
+    }
+    & .calendar__day {
+      padding-top: 10px;
+      height: 25px;
+    }
+    & .calendar__number {
+      height: 25px;
+    }
+  }
+}
+
+.calendar--medium {
+  width: 450px;
+  height: 400px;
+  & .calendar__header {
+    height: 37.5px;
+    padding-top:15px;
+  }
+  & .calendar__chevrons {
+    padding: 0px 45px;
+  }
+  & .calendar__date {
+    padding: 0px 30px 30px 30px;
+    grid-gap: 15px;
+  }
+  & .calendar__day {
+    padding-top: 15px;
+    height: 37.5px;
+  }
+  & .calendar__number {
+    height: 37.5px;
+  }
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 270px;
+    & .calendar__header {
+      height: 25px;
+      padding-top:10px;
+    }
+    & .calendar__chevrons {
+      padding: 0px 30px;
+    }
+    & .calendar__date {
+      height:230px;
+      padding: 0px 20px 20px 20px;
+      grid-gap: 10px;
+    }
+
+    & .calendar__month {
+      padding: 0px 5px 0px 10px;
+    }
+    & .calendar__day {
+      padding-top: 10px;
+      height: 25px;
+    }
+    & .calendar__number {
+      height: 25px;
+    }
+  }
+}
+
+// Variable Calendar Size
+
+@function pix($var){
+  @return $var * 1px
+};
+
+.calendar--variable {
+
+  $widthV: 0;
+
+  $heightV: $widthV / 12;
+  $gridGapV: $widthV / 30;
+  $headHeightV: $widthV / 20 * 3;
+  $chevronPadV: $widthV / 10;
+  $calDateV: $widthV / 15;
+  
+  $widthPxV: pix($widthV);
+  $heightPxV: pix($heightV);
+  $gridGapPxV: pix($gridGapV);
+  $headHeightPxV: pix($headHeightV);  
+  $chevronPadPxV: pix($chevronPadV);
+  $calDatePxV: pix($calDateV);
+  
+  width: $widthPxV;
+
+  & .calendar__header {
+    height: $headHeightPxV;
+  }
+
+  & .calendar__chevrons {
+    padding: 0px $chevronPadPxV;
+  }
+
+  & .calendar__date {
+    padding: 0px $calDatePxV $calDatePxV $calDatePxV;
+    grid-gap: $gridGapPxV;
+  }
+
+  & .calendar__day {
+    padding-top: $gridGapPxV;
+    height: $heightPxV;
+  }
+
+  & .calendar__number {
+    height: $heightPxV;
+  }
+
+}
